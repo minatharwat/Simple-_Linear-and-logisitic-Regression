@@ -1,0 +1,32 @@
+from scipy import stats
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+from sklearn.linear_model import LogisticRegression
+from sklearn.cross_validation import train_test_split
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+
+#size of the house
+X=np.array([2000,3000,4500,4800,6000,6900])
+Y=np.array([1250,1600,2500,4000,5500,6700])
+
+#a , b
+slope , intercept , R_val , P_val , Std_err = stats.linregress(X,Y)
+#now we have the best line with min a,b and error
+plt.plot(X,Y,'ro',color="black")
+plt.ylabel('Price')
+plt.xlabel('Size')
+#range of x and y axices
+
+plt.axis([0,7000,0,7000])
+plt.plot(X,X*slope+intercept,'b')
+plt.show()
+
+#prediction => just use slope and intercept with the input
+
+TestPoint=3500
+Prediction= TestPoint*slope+intercept
+print("Prediction is:",Prediction)
